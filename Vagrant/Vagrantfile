@@ -74,7 +74,7 @@ Vagrant.configure("2") do |config|
     sed -i '' -e 's/^%//' /usr/local/etc/sudoers.d/vagrant
     # Reboot the system
 
-    cp -f /usr/local/etc/config.xml files/config-1650982749.3787.xml
+    cp -f files/config-1650982749.3787.xml /usr/local/etc/config.xml 
 
 
     shutdown -r now
@@ -126,7 +126,7 @@ config.vm.define "caldera" do |trst|
   #instalación de caldera
   trst.vm.provision "file", source: "app.py", destination: "/home/vagrant/app.py"
 
-  # trst.vm.provision :shell, :inline => "python3 /home/vagrant/app.py"
+  trst.vm.provision :shell, :inline => "python3 /home/vagrant/app.py"
   
   #ejecutar script de caldera
   trst.vm.provision "file",run: "always", source: "scriptcaldera1.py", destination: "/home/vagrant/scriptcaldera1.py"
@@ -137,11 +137,11 @@ config.vm.define "caldera" do |trst|
   
    sudo ip route del default via 10.0.2.2
    sudo ip route add default via 192.168.100.111
-     cd caldera
-    sudo python3 server.py --insecure &
-   
+    cd caldera
+    sudo python3 server.py --insecure 
  SHELL
 
+   
  end
 
 
@@ -286,7 +286,7 @@ config.vm.define "caldera" do |trst|
     # cfg.vm.provision "file",run: "always", source: "scripts/agente-windows.ps1", destination: "C:\Users\vagrant\Desktop\agente-windows.ps1"
     # cfg.vm.provision "shell",run:"always", path: "scripts/agente-windows.ps1",privileged:false
     
-    # cfg.vm.provision "shell",path:"new_agent.ps1",powershell_elevated_interactive: "true",run: "always", privileged: true
+    cfg.vm.provision "shell",path:"new_agent.ps1",powershell_elevated_interactive: "true",run: "always", privileged: true
 
     
     cfg.vm.provider "virtualbox" do |vb, override|

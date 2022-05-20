@@ -60,6 +60,26 @@ If (-not (Test-Path $powersploitRepoPath)) {
   Write-Host "$('[{0:HH:mm}]' -f (Get-Date)) PowerSploit was already installed. Moving On."
 }
 
+#------------------------------------------------------
+# Download and unzip a copy of APT Simulator
+Write-Host "$('[{0:HH:mm}]' -f (Get-Date)) Downloading APT Simulator..."
+$aptSimulatorDownloadUrl = "https://github.com/NextronSystems/APTSimulator/releases/download/v0.9.3/APTSimulator_pw_apt.zip"
+$aptSimulatorRepoPath = "C:\Users\vagrant\AppData\Local\Temp\APTSimulator_pw_apt.zip"
+If (-not (Test-Path $aptSimulatorRepoPath)) {
+  Invoke-WebRequest -Uri "$aptSimulatorDownloadUrl" -OutFile $aptSimulatorRepoPath
+  Expand-Archive -path "$aptSimulatorRepoPath" -destinationpath 'c:\Tools\AptSimulator' -Force
+} Else {
+  Write-Host "$('[{0:HH:mm}]' -f (Get-Date)) APT SIMULATOR was already installed. Moving On."
+}
+#----------------------------------------------------------------
+
+
+
+
+
+
+
+
 # Download and unzip a copy of BadBlood
 Write-Host "$('[{0:HH:mm}]' -f (Get-Date)) Downloading BadBlood..."
 $badbloodDownloadUrl = "https://github.com/davidprowe/BadBlood/archive/master.zip"
